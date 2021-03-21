@@ -23,6 +23,7 @@ contract CheapToken is Context, AccessControlEnumerable, ERC777 {
      * See {ERC777-constructor}.
      */
     constructor(string memory name, string memory symbol, address[] memory defaultOperators, uint256 initialSupply, address owner) ERC777(name, symbol, defaultOperators) {
+        _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _setupRole(MINTER_ROLE, _msgSender());
         _mint(owner, initialSupply, "", "");
     }
